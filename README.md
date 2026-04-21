@@ -5,6 +5,9 @@ We designed this circuit for the SAE E-BAJA 2023 competetion. The circuit follow
 
 The LV circuit is the most manageable and flexible part where our most of the electrical engineering worked. There is no inclusive circuitory rule for the synthesis and analysis of the circuits but there were few exclusive rules given SAE INDIA rulebook. The rules for the start up of the vehicle must be followed.
 
+<img width="1157" height="828" alt="image" src="https://github.com/user-attachments/assets/80b2e6b3-5415-4093-84ff-3ab77d6b67fe" />
+
+
 1. Vehicle Controls
 1.1. Brakes: Any brakes, when actuated, shall cause the brake light to illuminate.
 Brake lights shall operate regardless of the kill switch setting and shall always be powered and functional all the time.
@@ -55,6 +58,19 @@ For the LV circuit synthesis we have conisered 1, 2.3, 2.4, 2.5 and 2.6 as the b
 # Bill of materials used in the Proteus Simulation
 <img width="469" height="320" alt="image" src="https://github.com/user-attachments/assets/da975697-aadd-42ce-8057-199274edf43e" />
 Note: Fuses, switches, toggle switches and motor are the components that are assigned differently and are not part of BOM. Our main focus was to test the conditions of the circuit based on the rules provided by SAE e-BAJA.
+
+# Operation and Power Flow
+1. The main battery accumulator(nominal voltage: 48V) is conneted to motor controller via 150 Amp fuse and Ignition Relay (AIR). The motor controller is then connected to motor.
+2. Two buck converter are used to down the 48V to 12V, providing power to brake light, TSAL (tractive system activation light) and RTDS Buzzer.
+3. Brake light had a separate power conncection path from the main accumulator while TSAL and RTDS Buzzer are following the electrical path after ignition relay. We did this, so that when Kill switches are pressed the Brake light should have power from the main supply while the Motor controller,motor, TSAL and RDTS Buzzer should totally cut from the main supply.
+4. A 12V to 5V buck converter is again used to power Arduino UNO.
+5. While simulating the circuit we have considered an ideal power for each volatge levels with separate ground connections.
+6. To make the vehicle in ready to drive mode, the main cut-off switch (HV) should be turned ON
+7. Controller checks the brake pedal is in pushhed state via toggle button in the simulator
+8. Controller checks the throttle pedal is in relaxed state via toggle button in the simulator
+9. On fullfilling the above three conditions(6,7 and 8), when driver pushees ignition button, the controller commands the ignition relay to be turned ON
+10. The TSAL gets activated and RTDS Buzzer makes a predefined noise.
+11. If you see clearly the Ignition Relay is connected to two kill switches 
 
 
 <img width="831" height="661" alt="image" src="https://github.com/user-attachments/assets/30b446d4-53fd-4a79-ae9e-965b1f4245b1" />
