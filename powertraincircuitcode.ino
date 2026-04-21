@@ -5,12 +5,12 @@ bool requiredCondition=false;
 bool buzzerDone=false;
 
 void setup() {
-pinMode(13,INPUT);
-pinMode(12,INPUT);
-pinMode(11,OUTPUT);
-pinMode(10,OUTPUT);
-pinMode(9,OUTPUT);
-pinMode(8,OUTPUT);
+pinMode(13,INPUT); //Ignition Button Input
+pinMode(12,INPUT); //Brake Throtle Input
+pinMode(11,OUTPUT); //Motor Relay output
+pinMode(10,OUTPUT); // TSAL output
+pinMode(9,OUTPUT); //Buzzer Ouptput
+pinMode(8,OUTPUT); //Brake Light Output
 }
 
 void loop() {
