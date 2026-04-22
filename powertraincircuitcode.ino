@@ -15,27 +15,27 @@ pinMode(8,OUTPUT); //Brake Light Output
 
 void loop() {
 
-  if(digitalRead(12)==HIGH){
+  if(digitalRead(12)==HIGH){ // Checks whether Brake Throttle is pressed or not
       breakPressed=true;
-    digitalWrite(8,HIGH);
+    digitalWrite(8,HIGH); // Commands the Brake light accordingly 
     }else if(digitalRead(12)==LOW){
        breakPressed=false;
       digitalWrite(8,LOW);
       }
-  if(digitalRead(13)==HIGH&& breakPressed){
+  if(digitalRead(13)==HIGH && breakPressed){ // Checks wehther Ignition Button is On and Brake Pedal is pressed
     engineActive=true;
    
-    if(!buzzerDone){
+    if(!buzzerDone){ // Activates Buzzer
        buzzerDone=true;
        digitalWrite(9,HIGH);
        delay(2000);
        digitalWrite(9,LOW);
       }
   
-     digitalWrite(11,HIGH);
+     digitalWrite(11,HIGH); // Activates Motor relay
     }  
     if(engineActive){
-      digitalWrite(10,HIGH);
+      digitalWrite(10,HIGH); // Activates TSAL
  
       }
 }
