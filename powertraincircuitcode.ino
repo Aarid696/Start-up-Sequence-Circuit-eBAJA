@@ -1,41 +1,73 @@
-bool breakPressed= false;
-bool ignitionPressedOnce=false;
-bool engineActive=false;
-bool requiredCondition=false;
-bool buzzerDone=false;
+// -----------------------------
+// SAE E-BAJA Start-Up Logic
+// Arduino UNO Control Code
+// -----------------------------
+
+// State Variables
+bool brakePressed = false;     // Tracks brake pedal status
+bool engineActive = false;     // Tracks if system is in Ready-to-Drive Mode
+bool buzzerDone = false;       // Ensures buzzer runs only once
 
 void setup() {
-pinMode(13,INPUT); //Ignition Button Input
-pinMode(12,INPUT); //Brake Throtle Input
-pinMode(11,OUTPUT); //Motor Relay output
-pinMode(10,OUTPUT); // TSAL output
-pinMode(9,OUTPUT); //Buzzer Ouptput
-pinMode(8,OUTPUT); //Brake Light Output
+  // -------- INPUTS --------
+  pinMode(13, INPUT); // Ignition Button
+  pinMode(12, INPUT); // Brake Pedal Input
+
+  // -------- OUTPUTS --------
+  pinMode(11, OUTPUT); // Motor Relay (AIR control)
+  pinMode(10, OUTPUT); // TSAL Indicator
+  pinMode(9, OUTPUT);  // RTDS Buzzer
+  pinMode(8, OUTPUT);  // Brake Light
 }
 
 void loop() {
 
-  if(digitalRead(12)==HIGH){ // Checks whether Brake Throttle is pressed or not
-      breakPressed=true;
-    digitalWrite(8,HIGH); // Commands the Brake light accordingly 
-    }else if(digitalRead(12)==LOW){
-       breakPressed=false;
-      digitalWrite(8,LOW);
-      }
-  if(digitalRead(13)==HIGH && breakPressed){ // Checks wehther Ignition Button is On and Brake Pedal is pressed
-    engineActive=true;
-   
-    if(!buzzerDone){ // Activates Buzzer
-       buzzerDone=true;
-       digitalWrite(9,HIGH);
-       delay(2000);
-       digitalWrite(9,LOW);
-      }
-  
-     digitalWrite(11,HIGH); // Activates Motor relay
-    }  
-    if(engineActive){
-      digitalWrite(10,HIGH); // Activates TSAL
- 
-      }
+  // -----------------------------
+  // BRAKE LOGIC
+  // -----------------------------
+  // Check if brake pedal is pressed
+  if (digitalRead(12) == HIGH) {
+    brakePressed = true;
+    digitalWrite(8, HIGH); // Turn ON brake light
+  } 
+  else {
+    brakePressed = false;
+    digitalWrite(8, LOW);  // Turn OFF brake light
+  }
+
+  // -----------------------------
+  // IGNITION + SAFETY CONDITION
+  // -----------------------------
+  // Start allowed only if:
+  // 1. Ignition button pressed
+  // 2. Brake pedal pressed
+  if (digitalRead(13) == HIGH && brakePressed) {
+
+    engineActive = true; // Enter Ready-to-Drive Mode
+
+    // -----------------------------
+    // RTDS (Buzzer) Logic
+    // -----------------------------
+    // Sound buzzer only once during activation
+    if (!buzzerDone) {
+      buzzerDone = true;
+
+      digitalWrite(9, HIGH); // Turn ON buzzer
+      delay(2000);           // 2-second sound
+      digitalWrite(9, LOW);  // Turn OFF buzzer
+    }
+
+    // -----------------------------
+    // MOTOR ACTIVATION
+    // -----------------------------
+    digitalWrite(11, HIGH); // Activate motor relay (AIR)
+  }
+
+  // -----------------------------
+  // TSAL LOGIC
+  // -----------------------------
+  // TSAL remains ON when system is active
+  if (engineActive) {
+    digitalWrite(10, HIGH);
+  }
 }
