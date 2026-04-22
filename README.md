@@ -107,20 +107,8 @@ Vehicle enters Ready-to-Drive Mode only when:
 ## ⚙️ System Architecture
 
 ### 🔋 Power Flow
-48V Battery
-│
-├── 150A Fuse
-│
-├── Ignition Relay (AIR)
-│ │
-│ ├── Motor Controller → Motor
-│ └── DC-DC (48V → 12V)
-│ ├── TSAL
-│ ├── RTDS
-│ └── Brake Light
-│
-└── DC-DC (12V → 5V)
-└── Arduino UNO
+<img width="1536" height="1024" alt="ChatGPT Image Apr 22, 2026, 05_59_59 PM" src="https://github.com/user-attachments/assets/e1d2d206-19c1-4bfe-b9ef-6f7366c470b4" />
+
 
 ## 🔁 Control Sequence
 
@@ -168,19 +156,23 @@ Vehicle enters Ready-to-Drive Mode only when:
 ---
 
 ## 🖼️ Circuit Diagrams
+If you pay attention to the circuits, we had used optocouplers in order to provide protection from short circuit or over voltage to the electrical components.
 
 ### 🔧 Complete System
 ![System Diagram](https://github.com/user-attachments/assets/80b2e6b3-5415-4093-84ff-3ab77d6b67fe)
+> 📝 Note: This is the representation of the actual system that we had integrated but is not a simulation freindly diagram. 
 
 ### ⚡ Power Section
 ![Power Flow](https://github.com/user-attachments/assets/74739d2b-34bd-44e2-8d39-8488b4ac406b)
+> 📝 Note: The main accumulator is associated with 12V relay. 
 
 ### 🔁 Relay Logic
 ![Relay Design](https://github.com/user-attachments/assets/457dc9e2-8dca-44ae-8c08-7e79627eaf62)
+> 📝 Note: All the other associated relays are 5V relays.
 
-### 🔌 Motor Simulation
+### 🔌 Actual Simulated Circuited
 ![Motor Simulation](https://github.com/user-attachments/assets/30b446d4-53fd-4a79-ae9e-965b1f4245b1)
-
+> 📝 Note: This is the actual circuit that we had simulated and tested. The relay associated with motor is just for the sake simulation, in reality we have to use 2 realys (5V and 12V). 5V relay will be activated by the Arduino and this relay can excite the 12V relay which is then connected to Motor/Motor Controller  
 ---
 
 ## ⚠️ Key Design Considerations
@@ -208,7 +200,9 @@ This project successfully demonstrates a **safe, rule-compliant LV start-up syst
 - Integration with real motor controller  
 - CAN communication with BMS  
 - Hardware PCB implementation  
-- Fault diagnostics system  
+- Fault diagnostics system
+- Use of ICs/timers instead of Arduino
+- Separate power source for control unit 
 
 ---
 
