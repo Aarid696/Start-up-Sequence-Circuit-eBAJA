@@ -158,7 +158,7 @@ Vehicle enters Ready-to-Drive Mode only when:
 ## Circuit Diagrams
 If you pay attention to the circuits, we had used optocouplers in order to provide protection from short circuit or over voltage to the electrical components.
 
-### 🔧 Complete System
+### Complete System
 ![System Diagram](https://github.com/user-attachments/assets/80b2e6b3-5415-4093-84ff-3ab77d6b67fe)
 > 📝 Note: This is the representation of the actual system that we had integrated but is not a simulation freindly diagram. 
 
