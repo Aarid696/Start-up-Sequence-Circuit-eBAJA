@@ -1,4 +1,4 @@
-# ⚡ SAE E-BAJA 2023 – Start-Up Sequence Circuit
+# SAE E-BAJA 2023 – Start-Up Sequence Circuit
 
 ![Status](https://img.shields.io/badge/status-completed-success)
 ![Simulation](https://img.shields.io/badge/simulation-Proteus-blue)
@@ -8,7 +8,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 This repository presents the design and simulation of a **Low Voltage (LV) Start-Up Sequence Circuit** developed for the **SAE E-BAJA 2023** competition, following the 2022–2023 SAE rulebook.
 
 The E-BAJA electrical system is divided into:
@@ -22,13 +22,13 @@ The **LV system**, however, provides flexibility for implementing:
 - Start-up sequencing
 - Driver interaction systems
 
-👉 This project focuses entirely on the **LV circuit design, control logic, and simulation**.
+This project focuses entirely on the **LV circuit design, control logic, and simulation**.
 
 <img width="1157" height="828" alt="image" src="https://github.com/user-attachments/assets/80b2e6b3-5415-4093-84ff-3ab77d6b67fe" />
 
 ---
 
-## 🎯 Design Scope
+## Design Scope
 
 The following SAE rulebook sections were implemented:
 
@@ -42,18 +42,18 @@ The following SAE rulebook sections were implemented:
 
 ---
 
-## 🚦 Key Functional Requirements
+## Key Functional Requirements
 
-### 🔴 Brake Light
+### Brake Light
 - Activates when brakes are pressed  
 - Always functional (even during kill switch activation)  
 - Powered independently for safety  
 
-### 🔁 Reverse System
+### Reverse System
 - Reverse light + audible alarm  
 - Activated only in reverse gear  
 
-### 🛑 Kill Switch
+### Kill Switch
 - Disconnects:
   - Tractive system
   - AIR (relay)
@@ -62,7 +62,7 @@ The following SAE rulebook sections were implemented:
 
 ---
 
-## 🚗 Ready-to-Drive Logic
+## Ready-to-Drive Logic
 
 Vehicle enters Ready-to-Drive Mode only when:
 
@@ -74,21 +74,21 @@ Vehicle enters Ready-to-Drive Mode only when:
 
 ---
 
-## 💡 TSAL (Tractive System Active Light)
+## TSAL (Tractive System Active Light)
 - Flashing indicator when system is active  
 - Frequency: **2–5 Hz**  
 - Brightness: **>350 lumens**
 
 ---
 
-## 🔊 RTDS (Ready-To-Drive Sound)
+## RTDS (Ready-To-Drive Sound)
 - Audible alert when vehicle becomes active  
 - Duration: **1–3 seconds**  
 - Minimum loudness: **70 dB**
 
 ---
 
-## 🧰 Bill of Materials (Simulation)
+## Bill of Materials (Simulation)
 
 | Component            | Description                    |
 |---------------------|--------------------------------|
@@ -104,15 +104,15 @@ Vehicle enters Ready-to-Drive Mode only when:
 
 ---
 
-## ⚙️ System Architecture
+## System Architecture
 
-### 🔋 Power Flow
+### Power Flow
 <img width="1536" height="1024" alt="ChatGPT Image Apr 22, 2026, 05_59_59 PM" src="https://github.com/user-attachments/assets/e1d2d206-19c1-4bfe-b9ef-6f7366c470b4" />
 
 
-## 🔁 Control Sequence
+## Control Sequence
 
-### ✅ Start-Up Process
+### Start-Up Process
 1. Turn ON HV cut-off switch  
 2. System checks:
    - Brake → Pressed  
@@ -125,7 +125,7 @@ Vehicle enters Ready-to-Drive Mode only when:
 
 ---
 
-## 🛑 Kill Switch Logic
+## Kill Switch Logic
 
 - Two kill switches connected to relay coil  
 - Pressing either:
@@ -135,7 +135,7 @@ Vehicle enters Ready-to-Drive Mode only when:
 
 ---
 
-## 🔌 Relay Configuration
+## Relay Configuration
 
 | Relay Type | Function |
 |-----------|--------|
@@ -145,7 +145,7 @@ Vehicle enters Ready-to-Drive Mode only when:
 
 ---
 
-## 🧪 Simulation Details
+## Simulation Details
 
 - Software: **Proteus Design Suite**
 - Ideal voltage sources used:
@@ -155,26 +155,26 @@ Vehicle enters Ready-to-Drive Mode only when:
 
 ---
 
-## 🖼️ Circuit Diagrams
+## Circuit Diagrams
 If you pay attention to the circuits, we had used optocouplers in order to provide protection from short circuit or over voltage to the electrical components.
 
 ### 🔧 Complete System
 ![System Diagram](https://github.com/user-attachments/assets/80b2e6b3-5415-4093-84ff-3ab77d6b67fe)
 > 📝 Note: This is the representation of the actual system that we had integrated but is not a simulation freindly diagram. 
 
-### ⚡ Power Section
+### Power Section
 ![Power Flow](https://github.com/user-attachments/assets/74739d2b-34bd-44e2-8d39-8488b4ac406b)
 > 📝 Note: The main accumulator is associated with 12V relay. 
 
-### 🔁 Relay Logic
+### Relay Logic
 ![Relay Design](https://github.com/user-attachments/assets/457dc9e2-8dca-44ae-8c08-7e79627eaf62)
 > 📝 Note: All the other associated relays are 5V relays.
 
-### 🔌 Actual Simulated Circuited
+### Actual Simulated Circuited
 ![Motor Simulation](https://github.com/user-attachments/assets/30b446d4-53fd-4a79-ae9e-965b1f4245b1)
 > 📝 Note: This is the actual circuit that we had simulated and tested. The relay associated with motor is just for the sake simulation, in reality we have to use 2 realys (5V and 12V). 5V relay will be activated by the Arduino and this relay can excite the 12V relay which is then connected to Motor/Motor Controller  
 ---
-## 🧠 Code Logic Explanation
+## Code Logic Explanation
 
 The control system is implemented using Arduino UNO and follows a simple state-based logic to ensure safe activation of the tractive system.
 
@@ -234,7 +234,7 @@ The system enters Ready-to-Drive Mode only when:
 
 ---
 
-## ⚠️ Key Design Considerations
+## Key Design Considerations
 
 - ✔ Fail-safe operation under emergency conditions  
 - ✔ Independent brake light supply  
@@ -244,7 +244,7 @@ The system enters Ready-to-Drive Mode only when:
 
 ---
 
-## 📊 Conclusion
+## Conclusion
 
 This project successfully demonstrates a **safe, rule-compliant LV start-up system** for an electric BAJA vehicle. The simulation validates:
 
@@ -254,7 +254,7 @@ This project successfully demonstrates a **safe, rule-compliant LV start-up syst
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 
 - **Logic for accelerator throttle should be incluted in the code**
 - Integration with real motor controller  
@@ -266,14 +266,14 @@ This project successfully demonstrates a **safe, rule-compliant LV start-up syst
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Arijeet Dutta**  
 Electrical Engineering – SAE E-BAJA Project  
 NIT Raipur
 ---
 
-## 📄 License
+## License
 MIT License
 
 Copyright (c) 2026 Arijeet Dutta
