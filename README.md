@@ -70,8 +70,18 @@ Note: Fuses, switches, toggle switches and motor are the components that are ass
 8. Controller checks the throttle pedal is in relaxed state via toggle button in the simulator
 9. On fullfilling the above three conditions(6,7 and 8), when driver pushees ignition button, the controller commands the ignition relay to be turned ON
 10. The TSAL gets activated and RTDS Buzzer makes a predefined noise.
-11. If you see clearly the Ignition Relay is connected to two kill switches 
+11. If you see clearly the Ignition Relay is connected to two kill switches, the coil of the relay gets activated when the eiother of the two switches gets pressed and the 12V supply powers the coil of the relay and it helps to drip the supply for the motor.
+12. This tripping of the supply also results in the tripping of the TSAL and RTDS power supply. These are systematically viewed in the protesu sdesign suit beacuse we have considered ideal power sourses. But in reality they are electrical connected via dc-dc converters which is lowering the voltage directly from the motor controller output.
+13. In the kill switch presseing case, we want that the control unit should get power all the time so does the controller able to command the turing ON of the brake light and driver is also able to see the driver display showing the conditon of the battery status.
+14. The relay with kill swicthes is the only realy that excites on 12V supply.
 
+<img width="778" height="443" alt="image" src="https://github.com/user-attachments/assets/74739d2b-34bd-44e2-8d39-8488b4ac406b" />
+
+15. The other realys for TSAL, RTDS and Brake light are excited through 5V supply.
+
+<img width="496" height="695" alt="image" src="https://github.com/user-attachments/assets/457dc9e2-8dca-44ae-8c08-7e79627eaf62" />
+
+16. The relay associated with motor in the simulation design is just for the sake of the running of simulator. Since in proteus it is difficult to incoporate the simulatoin of the motor controller with real battery. Well in reality we have incorporated a 5V relay commanding 12V relay to be in closed conditon from the Arduino.  
 
 <img width="831" height="661" alt="image" src="https://github.com/user-attachments/assets/30b446d4-53fd-4a79-ae9e-965b1f4245b1" />
 
